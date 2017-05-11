@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Car or Train today ? </title>
+  <meta name="description" content="Comparator of time transportation" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="./style/main.css" type="text/css" />
+<link rel="stylesheet" href="./style/bootstrap.css" type="text/css" />
+</head>
+
+  <script>
+	function search() {
+  var add1 = "42 Chemin de la côte lézard 95300 Pontoise";
+  var add2 = "Rue andré clément 95370 Montigny-lès-cormeilles";
+  var url_search = "Pontoise";
+	$.ajax({
+            url : 'http://localhost:3000/getData', // on appelle le script JSON
+            dataType : 'text', // on spécifie bien que le type de données est en JSON
+            data : {
+                addFrom : add1,
+                addTo : add2
+			},
+
+        success : function(donnee){
+				console.log(JSON.parse(donnee));
+        $("#message").html(JSON.parse(donnee));
+            }
+        });
+}
+  </script>
+
+<body>
+        <h1>Test </h1>
+        <button id="compute" class="button_icon" onclick="search()"></button>
+        <span id="message"></span>
+</body>
+</html>
